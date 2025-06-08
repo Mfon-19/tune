@@ -21,8 +21,22 @@ class MusicLibrary: ObservableObject {
     private func loadDemoSongs() {
         // Add some demo songs for testing
         songs = [
-            Song(title: "Demo Song 1", artist: "Demo Artist", album: "Demo Album", duration: 180, fileURL: URL(string: "file://demo1.mp3")!, artworkData: <#Data?#>),
-            Song(title: "Demo Song 2", artist: "Another Artist", album: "Another Album", duration: 240, fileURL: URL(string: "file://demo2.mp3")!, artworkData: <#Data?#>)
+            Song(
+                title: "Demo Song 1",
+                artist: "Demo Artist",
+                album: "Demo Album",
+                duration: 180,
+                fileURL: URL(string: "file://demo1.mp3")!,
+                artworkData: nil
+            ),
+            Song(
+                title: "Demo Song 2",
+                artist: "Another Artist",
+                album: "Another Album",
+                duration: 240,
+                fileURL: URL(string: "file://demo2.mp3")!,
+                artworkData: nil
+            )
         ]
     }
 }

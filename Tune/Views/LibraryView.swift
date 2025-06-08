@@ -8,11 +8,16 @@ import SwiftUI
 
 struct LibraryView: View {
     @EnvironmentObject var musicLibrary: MusicLibrary
+    @EnvironmentObject var audioPlayer: AudioPlayerManager
     
     var body: some View {
         NavigationView {
             List(musicLibrary.songs) { song in
-                Text("\(song.title) - \(song.artist)")
+                SongRowView(song: song)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        audioPlayer.play(song: song)
+                    }
             }
             .navigationTitle("Library")
         }
@@ -22,4 +27,5 @@ struct LibraryView: View {
 #Preview {
     LibraryView()
         .environmentObject(MusicLibrary.shared)
+        .environmentObject(AudioPlayerManager.shared)
 }
