@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showNowPlaying = false
+
     var body: some View {
         TabView {
             LibraryView()
@@ -29,7 +31,12 @@ struct ContentView: View {
                 }
         }
         .overlay(alignment: .bottom) {
-            MiniPlayerView()
+            MiniPlayerView {
+                showNowPlaying = true
+            }
+        }
+        .sheet(isPresented: $showNowPlaying) {
+            NowPlayingView()
         }
     }
 }
@@ -38,4 +45,5 @@ struct ContentView: View {
     ContentView()
         .environmentObject(MusicLibrary.shared)
         .environmentObject(AudioPlayerManager.shared)
+        .environmentObject(PlaylistViewModel())
 }

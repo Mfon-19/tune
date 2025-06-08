@@ -11,12 +11,14 @@ import SwiftUI
 struct TuneApp: App {
     @StateObject private var musicLibrary = MusicLibrary.shared
     @StateObject private var audioPlayer = AudioPlayerManager.shared
+    @StateObject private var playlistViewModel = PlaylistViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(musicLibrary)
                 .environmentObject(audioPlayer)
+                .environmentObject(playlistViewModel)
         }
     }
 }
