@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MiniPlayerView: View {
     @EnvironmentObject var audioPlayer: AudioPlayerManager
+    var onTap: (() -> Void)? = nil
 
     var body: some View {
         VStack(spacing: 4) {
@@ -31,6 +32,9 @@ struct MiniPlayerView: View {
         }
         .padding(8)
         .background(.thinMaterial)
+        .onTapGesture {
+            onTap?()
+        }
     }
 }
 
