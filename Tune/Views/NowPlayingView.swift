@@ -21,6 +21,20 @@ struct NowPlayingView: View {
                     .font(.headline)
                     .foregroundStyle(.secondary)
 
+                Slider(value: Binding(
+                    get: { audioPlayer.currentTime },
+                    set: { newValue in
+                        audioPlayer.seekTo(time: newValue)
+                    }
+                ), in: 0...audioPlayer.duration)
+
+                HStack {
+                    Text(formattedTime(audioPlayer.currentTime))
+                    Spacer()
+                    Text(formattedTime(audioPlayer.duration))
+                }
+                .font(.caption)
+
                 Spacer()
 
                 PlayerControlsView()
@@ -31,6 +45,12 @@ struct NowPlayingView: View {
             }
         }
         .padding()
+    }
+
+    private func formattedTime(_ time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 

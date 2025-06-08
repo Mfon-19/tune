@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var notificationsEnabled = true
+    @State private var cellularDownloads = false
+
     var body: some View {
         NavigationView {
-            Text("Settings Coming Soon")
-                .navigationTitle("Settings")
+            Form {
+                Toggle("Enable Notifications", isOn: $notificationsEnabled)
+                Toggle("Download Over Cellular", isOn: $cellularDownloads)
+            }
+            .navigationTitle("Settings")
         }
     }
 }
